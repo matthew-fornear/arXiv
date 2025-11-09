@@ -6,9 +6,9 @@ Python utility that replays the provided arXiv search requests, paginates throug
 
 - Python 3.9+
 - `pip install -r script/requirements.txt` (see below) or manually install:
-  - `requests`
-  - `beautifulsoup4`
-  - `python-dotenv`
+- `requests`
+- `beautifulsoup4`
+- `python-dotenv`
 - `tqdm`
 
 ## Environment
