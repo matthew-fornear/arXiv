@@ -32,6 +32,7 @@ python3 script/arxivCollector.py --query "blackhole"
 - Output root defaults to `/output`.
 - Use `--max-pages` to cap pagination, or `--dry-run` to inspect the first page without writing files.
 - Adjust parameters such as `--size`, `--order`, `--searchtype`, `--abstracts`, `--source`, and `--output` (base directory) to match other cURL variants.
+- arXiv caps pagination at 10,000 results; the CLI automatically stops before exceeding that offset.
 
 To regenerate requirements (optional):
 

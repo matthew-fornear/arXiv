@@ -30,6 +30,7 @@ DEFAULT_ABSTRACTS = "show"
 DEFAULT_SOURCE = "header"
 BASE_URL = "https://arxiv.org/search/"
 OUTPUT_DIR = Path("/home/user/projects/arXiv/output")
+MAX_RESULTS_OFFSET = 10000  # arXiv refuses start >= 10000
 
 RESULT_COUNT_PATTERN = re.compile(
     r"Showing\s+\d+\s*(?:&ndash;|-)\s*\d+\s+of\s+([\d,]+)\s+results",
@@ -220,6 +221,8 @@ def collect_records(
     while True:
         if max_pages is not None and page_index >= max_pages:
             break
+        if start >= MAX_RESULTS_OFFSET:
+            break
 
         params = {
             "query": query,
@@ -263,7 +266,8 @@ def collect_records(
         if total_results is None:
             total_results = extract_total_results(soup)
             if total_results:
-                progress.total = total_results
+                effective_total = min(total_results, MAX_RESULTS_OFFSET)
+                progress.total = effective_total
                 progress.refresh()
 
         start += size
