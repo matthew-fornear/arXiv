@@ -50,3 +50,11 @@ Progress bars (via `tqdm`) track both metadata collection and PDF downloads. Del
 
 The output root directory (default `/output`) is created automatically, and the entire tree is ignored by git.
 
+### Captcha Note
+
+If arXiv challenges you with a reCAPTCHA, the script will receive the challenge page and thus report zero results. When this happens:
+
+- Solve the captcha in your browser.
+- Copy the updated cookie string (including the `captchaAuth=…` token) into `ARXIV_COOKIE` inside `.env`.
+- Re-run the script; the next request will succeed once the captcha cookie is present.
+
